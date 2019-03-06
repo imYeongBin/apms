@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 import org.springframework.stereotype.Repository;
 
-import apms.VO.Workspace;
+import apms.VO.Project;
 
 @Repository
-public interface Dao_workspace {
+public interface Dao_project {
 	
-	public ArrayList<Workspace> wlist();
-	public void ins(Workspace e);
+	public ArrayList<Project> plist();
+	public void ins(Project e);
 	
 }

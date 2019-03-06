@@ -5,22 +5,24 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import apms.Database.Dao_workspace;
+import apms.Database.Dao_project;
+import apms.VO.Project;
 
-import apms.VO.Workspace;
+
+
 
 @Service
-public class Service_workspace {
+public class Service_project {
 	
 	@Autowired(required=false)
-	Dao_workspace dao;
+	Dao_project dao;
 	
-	public ArrayList<Workspace> wlist(){
+	public ArrayList<Project> plist(){
 		
-		return dao.wlist();
+		return dao.plist();
 	}
 	
-	public void ins(Workspace w) {
+	public void ins(Project w) {
 		dao.ins(w);
 	};
 	

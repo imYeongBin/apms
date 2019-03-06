@@ -6,10 +6,12 @@
 	<typeAliases>
 		<typeAlias alias="workspace" type="apms.VO.Workspace" />
 		<typeAlias alias="emp" type="apms.VO.Emp" />
+		<typeAlias alias="emp" type="apms.VO.Project" />
 	</typeAliases>
 	<mappers>
 
 		<mapper resource="Mapper/workspaceMapper.xml" />
 		<mapper resource="Mapper/manpowerMapper.xml" />
+		<mapper resource="Mapper/projectMapper.xml" />
 	</mappers>
 </configuration>

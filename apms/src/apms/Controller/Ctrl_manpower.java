@@ -35,15 +35,7 @@ public class Ctrl_manpower {
 		
 		Emp e1 = new Emp(name, deptno,job,email,id,status); 
 		service.ins(e1);
-		
-		//확인용 출력
-		System.out.println("전달받은 name : "+name);		
-		System.out.println("전달받은 deptno : "+deptno);	
-		System.out.println("전달받은 job : "+job);	
-		System.out.println("전달받은 email : "+email);	
-		System.out.println("전달받은 id : "+id);	
-		System.out.println("전달받은 status : "+status);	
-		System.out.println("---------------------------");
+
 		
 		return "redirect:manpower.do?method=list";
 	

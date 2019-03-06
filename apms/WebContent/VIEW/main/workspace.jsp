@@ -66,7 +66,7 @@
 <script type="text/javascript">
 	$(document).ready( function(){
 		
-		$('#emp_table').DataTable();
+		$('#workspace_table').DataTable();
 		
 		
 		$('#region_create_btn').on('click', function(e) {
@@ -85,7 +85,7 @@
 		pop.close();		
 	}
 	function submit_popup(){
-		$("form[id=add_emp]").submit();
+		$("form[id=add_workspace]").submit();
 		var pop = $("#element_to_pop_up").bPopup();
 		pop.close();		
 	}
@@ -270,65 +270,65 @@
 			</nav>
 			<div class="text-right m-5">
 				<div id="region_create_btn" class="mb-5">
-					<a href="#" class="btn btn-primary ">사원등록</a>
+					<a href="#" class="btn btn-primary ">워크스페이스생성</a>
 				</div>
 				
 				<div id="element_to_pop_up" class="popup_hide">
 					<a class="b-close">x</a>
-					<form action="manpower.do" id="add_emp">
+					<form action="workspace.do" id="add_workspace">
 						<input type="hidden" name="method" value="ins"/>
 						<div class="mb-3">
 							<div>
-								<span>이름 : </span>
+								<span>타이틀 : </span>
 							</div>
 							<div>
-								<input type="text" id="name" name="name" class="length-80"/>
+								<input type="text" id="title" name="title" class="length-80"/>
 							</div>
 						</div>
 
 						<div class="mb-3">
 							<div>
-								<span>부서번호 : </span>
+								<span>담당자 : </span>
 							</div>
 							<div>
-								<input type="text" id="deptno" name="deptno" class="length-80"/>
-							</div>
-						</div>
-						
-						<div class="mb-3">
-							<div>
-								<span>직책 : </span>
-							</div>
-							<div>
-								<input type="text" id="job" name="job" class="length-80"/>
+								<input type="text" id="pm" name="pm" class="length-80"/>
 							</div>
 						</div>
 						
 						<div class="mb-3">
 							<div>
-								<span>이메일 : </span>
+								<span>전체예산 : </span>
 							</div>
 							<div>
-								<input type="text" id="email" name="email" class="length-80"/>
+								<input type="text" id="totbudget" name="totbudget" class="length-80"/>
 							</div>
 						</div>
 						
 						<div class="mb-3">
 							<div>
-								<span>아이디 : </span>
-							</div>
-							<div>
-								<input type="text" id="id" name="id" class="length-80"/>
-							</div>
-						</div>
-						
-						
-						<div class="mb-3">
-							<div>
-								<span>상태 : </span>
+								<span>작업상태 : </span>
 							</div>
 							<div>
 								<input type="text" id="status" name="status" class="length-80"/>
+							</div>
+						</div>
+						
+						<div class="mb-3">
+							<div>
+								<span>참여인원 : </span>
+							</div>
+							<div>
+								<input type="text" id="empnos" name="empnos" class="length-80"/>
+							</div>
+						</div>
+						
+						
+						<div class="mb-3">
+							<div>
+								<span>파일번호 : </span>
+							</div>
+							<div>
+								<input type="text" id="fileno" name="fileno" class="length-80"/>
 							</div>
 						</div>
 						
@@ -347,22 +347,23 @@
 				
 				
 				<div id="region_table" class="">
-					<table id="emp_table">
+					<table id="workspace_table">
 						<thead>
 							<tr>
-								<th>사번</th><th>부서번호</th><th>이름</th><th>직책</th><th>이메일</th><th>아이디</th><th>상태</th>
+								<th>번호</th><th>타이틀</th><th>담당자</th><th>전체예산</th><th>상태</th><th>파일번호</th><th>참가인원</th>
 							</tr>
 						</thead>
 						<tbody>						
-							<c:forEach var="emp" items="${elist }">
+							<c:forEach var="workspace" items="${wlist }">
 								<tr>
-									<td>${emp.empno }</td>
-									<td>${emp.deptno }</td>
-									<td>${emp.name }</td>
-									<td>${emp.job }</td>
-									<td>${emp.email }</td>
-									<td>${emp.id }</td>
-									<td>${emp.status }</td>
+									<td>${workspace.spaceno}</td>
+									<td>${workspace.title}</td>
+									<td>${workspace.pm}</td>
+									<td>${workspace.totbudget}</td>
+									<td>${workspace.status}</td>
+									<td>${workspace.fileno}</td>
+									<td>${workspace.empnos}</td>
+
 								</tr>						
 							</c:forEach>
 						</tbody>

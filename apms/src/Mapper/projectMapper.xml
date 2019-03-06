@@ -2,20 +2,20 @@
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="apms.Database.Dao_workspace">
+<mapper namespace="apms.Database.Dao_project">
 	
- 	<resultMap type="workspace" id="workMap" />
-	<select id="wlist" resultMap="workMap">
+ 	<resultMap type="project" id="prjMap" />
+	<select id="plist" resultMap="prjMap">
 		SELECT * 
-		FROM workspace 
-		ORDER BY spaceno DESC
+		FROM project 
+		ORDER BY prjno DESC
 	</select>
 	
-	<insert id="ins" parameterType="workspace">
-		INSERT INTO workspace(spaceno, title, pm, totbudget, status, fileno, empnos) 
-		VALUES (seq_workspace.nextval, #{title}, #{pm}, #{totbudget},#{status},#{fileno}, #{empnos})
+	<insert id="ins" parameterType="project">
+		INSERT INTO project(prjno, spaceno, title, pm, prjbudget, begindate,enddate, status, fileno, empnos) 
+		VALUES (seq_project.nextval,#{spaceno}, #{title}, #{pm},#{prjbudget},#{begindate},#{enddate},#{status},#{fileno}, #{empnos})
 	</insert>
-<!--	(title, pm,totbudget,status,fileno,empnos)
+<!--	(title, pm,totbudget,status,fileno,empnos) spaceno,title,pm,prjbudget,begindate,enddate,status,fileno,empnos
 	<select id="pname" resultType="MyInfo" parameterType="int">
 		SELECT e.empno, e.name, e.job, e.deptno, e.status, d.dname 
 		FROM emp e, dept d
