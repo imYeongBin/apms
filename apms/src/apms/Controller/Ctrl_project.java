@@ -1,5 +1,6 @@
 package apms.Controller;
 
+import java.text.ParseException;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,14 +35,19 @@ public class Ctrl_project {
 					  @RequestParam("title") String title,
 					  @RequestParam("pm") int pm,
 					  @RequestParam("prjbudget") int prjbudget,
-					  @RequestParam("begindate") Date begindate,
-					  @RequestParam("enddate") Date enddate,
+					  @RequestParam("begindate") String begindate,
+					  @RequestParam("enddate") String enddate,
 					  @RequestParam("status") String status,
 					  @RequestParam("fileno") int fileno,
 					  @RequestParam("empnos") String empnos,
-					  Model d) {
+					  Model d) throws ParseException {
+		java.text.SimpleDateFormat sdf1 = new java.text.SimpleDateFormat("yyyy-MM-dd");
+		java.util.Date data1 = sdf1.parse(begindate);
 		
-		Project e1 = new Project(spaceno,title,pm,prjbudget,begindate,enddate,status,fileno,empnos); 
+		java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd");
+		java.util.Date data2 = sdf2.parse(enddate);
+
+		Project e1 = new Project(spaceno,title,pm,prjbudget,data1,data2,status,fileno,empnos); 
 		service.ins(e1);
 
 		

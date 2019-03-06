@@ -13,7 +13,7 @@
 	
 	<insert id="ins" parameterType="project">
 		INSERT INTO project(prjno, spaceno, title, pm, prjbudget, begindate,enddate, status, fileno, empnos) 
-		VALUES (seq_project.nextval,#{spaceno}, #{title}, #{pm},#{prjbudget},#{begindate},#{enddate},#{status},#{fileno}, #{empnos})
+		VALUES (seq_project.nextval,#{spaceno}, #{title}, #{pm},#{prjbudget},TO_CHAR(#{begindate},'yyyy-mm-dd'),TO_CHAR(#{enddate},'yyyy-mm-dd'),#{status},#{fileno}, #{empnos})
 	</insert>
 <!--	(title, pm,totbudget,status,fileno,empnos) spaceno,title,pm,prjbudget,begindate,enddate,status,fileno,empnos
 	<select id="pname" resultType="MyInfo" parameterType="int">

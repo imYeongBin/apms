@@ -6,7 +6,7 @@
 	<typeAliases>
 		<typeAlias alias="workspace" type="apms.VO.Workspace" />
 		<typeAlias alias="emp" type="apms.VO.Emp" />
-		<typeAlias alias="emp" type="apms.VO.Project" />
+		<typeAlias alias="project" type="apms.VO.Project" />
 	</typeAliases>
 	<mappers>
 

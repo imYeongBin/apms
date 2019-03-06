@@ -16,7 +16,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 <title>apms</title>
-	<!-- 폰트 및 아이콘 설정 -->
+<!-- 폰트 및 아이콘 설정 -->
 	<!-- https://fontawesome.com/icons?d=gallery -->
 	<link href="${path}/bootstrap/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 	<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -25,48 +25,39 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 	<link rel="stylesheet" href="${path}/bootstrap/css/sb-admin-2.min.css" >
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-	
-	<!-- datatable CSS -->	
-	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/> 
-	
 	<!-- CSS Style은 순서대로 적용되기 때문에 Custom CSS는 여기 하단으로 추가해주세요. -->
 	<link rel="stylesheet" href="${path}/CSS/custom.css" >
+	<!-- jsTree CSS -->
+	<link rel="stylesheet" href="${path}/JS/jstree/dist/themes/default/style.min.css" />
 	
+	<!-- datatable CSS -->	 	
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/> 
+	<style type="text/css">
 
-	
-<style type="text/css">
-	
-</style>
-	
-	<!-- bootstrap에서 사용한 jquery -->
-	<script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript"></script>
-	
-	<!-- jquery ui -->
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	
+	</style>
 	<!-- bootstrap에서 사용한 jquery -->
 	<script src="${path}/bootstrap/vendor/jquery/jquery.min.js" type="text/javascript"></script>
-	
+	<!-- jquery ui -->
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<!-- bpopup js(http://dinbror.dk/bpopup/) -->
 	<script src="${path}/JS/bpopup/jquery.bpopup.min.js" type="text/javascript"></script>
-
-	<!-- Script 설정(jquery) -->
-	<script src="${path}/bootstrap/js/sb-admin-2.min.js" type="text/javascript"></script>
-	<!-- datatables -->
+	<!-- jsTree js(https://www.jstree.com/) -->
+	<script src="${path}/JS/jstree/dist/jstree.min.js"></script>
+  	<!-- datatables -->
 	<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
+
+  	<!-- Script 설정(jquery) -->
+	<script src="${path}/bootstrap/js/sb-admin-2.min.js" type="text/javascript"></script>
 	
 	<!-- Script 설정(bootstrap) -->
 	<script src="${path}/bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js" type="text/javascript"></script>
 	
 	<!-- Core plugin JavaScript-->
     <script src="${path}/bootstrap/vendor/jquery-easing/jquery.easing.min.js"></script>
-    
-
-
 <script type="text/javascript">
 	$(document).ready( function(){
 		
-		$('#workspace_table').DataTable();
+		$('#project_table').DataTable();
 		
 		
 		$('#region_create_btn').on('click', function(e) {
@@ -78,7 +69,28 @@
             $('#element_to_pop_up').bPopup();
 
 		});
+
+		
+		
 	});
+	$(function(){
+		// datepicker 설정
+		// 참조 : https://blog.naver.com/komj707/221447084954
+		$(".datepicker").datepicker({
+			// date 형식
+			dateFormat:"yy-mm-dd",
+			// 요일 표시
+			dayNamesMin:["일","월","화","수","목","금","토"],
+			// 월 표시
+			monthNames:["01월","02월","03월","04월","05월","06월",
+						"07월","08월","09월","10월","11월","12월"]
+		});
+		
+	});
+
+
+
+	
 	
 	function close_popup(){
 		var pop = $("#element_to_pop_up").bPopup();
@@ -281,8 +293,8 @@
 							<div>
 								<span>상위workspace : </span>
 							</div>
-							<div>
-								<input type="text" id="spaceno" name="spaceno" class="length-80" disabled="disabled"/>
+							<div><!--disabled="disabled"  -->
+								<input type="text" id="spaceno" name="spaceno" class="length-80" />
 							</div>
 						</div>
 						
@@ -318,7 +330,7 @@
 								<span>시작일 : </span>
 							</div>
 							<div>
-								<input type="text" id="begindate" name="begindate" class="length-80"/>
+								<input type="text" id="begindate" name="begindate" class="length-80 datepicker"/>
 							</div>
 						</div>
 						<div class="mb-3">
@@ -326,7 +338,7 @@
 								<span>종료일 : </span>
 							</div>
 							<div>
-								<input type="text" id="enddate" name="enddate" class="length-80"/>
+								<input type="text" id="enddate" name="enddate" class="length-80 datepicker"/>
 							</div>
 						</div>
 						
@@ -386,8 +398,8 @@
 									<td>${project.title}</td>
 									<td>${project.pm}</td>
 									<td>${project.prjbudget}</td>
-									<td>${project.begindate}</td>
-									<td>${project.enddate}</td>
+									<td>  <fmt:formatDate value="${project.begindate}" pattern="yyyy-MM-dd" /></td>
+									<td>  <fmt:formatDate value="${project.enddate}" pattern="yyyy-MM-dd" /></td>
 									<td>${project.status}</td>
 									<td>${project.fileno}</td>
 									<td>${project.empnos}</td>
