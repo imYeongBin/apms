@@ -35,10 +35,10 @@ public class Ctrl_manpower {
 		
 		Emp e1 = new Emp(name, deptno,job,email,id,status); 
 		service.ins(e1);
-
+		
 		
 		return "redirect:manpower.do?method=list";
-	
+		
 	}
 	
 

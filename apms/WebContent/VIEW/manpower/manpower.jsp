@@ -69,7 +69,7 @@
 		$('#emp_table').DataTable();
 		
 		
-		$('#region_create_btn').on('click', function(e) {
+		$('#create_btn').on('click', function(e) {
 
             // Prevents the default action to be triggered. 
             e.preventDefault();
@@ -270,12 +270,12 @@
 			</nav>
 			<div class="text-right m-5">
 				<div id="region_create_btn" class="mb-5">
-					<a href="#" class="btn btn-primary ">사원등록</a>
+					<a href="#" class="btn btn-primary" id="create_btn">사원등록</a>
 				</div>
 				
 				<div id="element_to_pop_up" class="popup_hide">
 					<a class="b-close">x</a>
-					<form action="manpower.do" id="add_emp">
+					<form id="add_emp">
 						<input type="hidden" name="method" value="ins"/>
 						<div class="mb-3">
 							<div>
