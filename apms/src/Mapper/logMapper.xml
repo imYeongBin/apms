@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="atask.Database.log_Dao">
+	<!-- 로그인 -->
+	<select id="login" resultType="MyInfo" parameterType="emp">
+	SELECT e.empno, e.name, e.job, e.deptno, e.status, d.dname 
+	FROM emp e, dept d
+	WHERE e.deptno = d.deptno
+	AND id=#{id}
+	AND password=#{password}
+	</select>
+	
+	<!-- 회원가입 -->
+	<insert id="sign" parameterType="sign">
+	INSERT INTO emp(empno, name, email, id, password)
+	VALUES(sq_emp.nextval, #{name}, #{email}, #{id}, #{password})
+	</insert>
+	
+	<!-- 아이디 중복확인 -->
+	<select id="ckId" resultType="String" parameterType="String">
+	SELECT id
+	FROM emp
+	WHERE id=#{value}
+	</select>
+	
+	<!-- 이메일 중복확인 -->
+	<select id="ckEmail" resultType="String" parameterType="String">
+	SELECT email
+	FROM emp
+	WHERE email=#{value}
+	</select>
+	
+	<!-- 비밀번호 찾기(아이디 확인) -->
+	<select id="ckPass" resultType="String" parameterType="emp">
+	SELECT id
+	FROM emp
+	WHERE id=#{id}
+	AND email=#{email}
+	</select>
+	
+	<!-- 새로운 비밀번호 설정 -->
+	<update id="newPass" parameterType="emp">
+	UPDATE emp 
+	SET password=#{password}
+	WHERE id=#{id}
+	</update>
+	
+</mapper>

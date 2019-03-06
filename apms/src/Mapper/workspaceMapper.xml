@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="apms.Database.workspace_Dao">
+	
+	<resultMap type="workspace" id="workMap" />
+	<!-- workspace list 가지고 오기 -->
+	<select id="wlist" resultMap="workMap">
+		SELECT *
+		FROM workspace
+		ORDER BY spaceno DESC
+	</select>
+	
+	<select id="pname" resultType="MyInfo" parameterType="int">
+		SELECT e.empno, e.name, e.job, e.deptno, e.status, d.dname 
+		FROM emp e, dept d
+		WHERE e.deptno = d.deptno
+		AND e.empno = #{value}
+	</select>
+	
+	<resultMap type="emp" id="empMap"/>
+	<!-- emp list 가지고 오기 -->
+	<select id="elist" resultMap="empMap">
+		SELECT d.dname, e.deptno, e.empno, e.job, e.name
+		FROM emp e, dept d
+		WHERE e.deptno = d.deptno
+		AND e.deptno != 'A11'
+	</select>
+	
+	<resultMap type="dept" id="deptMap"/>
+	<!-- dept list 가지고 오기 -->
+	<select id="dlist" resultMap="deptMap">
+		SELECT *
+		FROM dept
+		WHERE deptno != 'A11'
+	</select>
+	
+	<insert id="insert" parameterType="workspace">
+		INSERT INTO workspace(spaceno, title, pm, totbudget, empnos)
+		VALUES (sq_workspace.nextval, #{title}, #{pm}, #{totbudget}, #{empnos})
+	</insert>
+	
+	<select id="info" resultType="workspace" parameterType="int">
+		SELECT *
+		FROM workspace
+		WHERE spaceno = #{value}
+	</select>
+	
+	<update id="update" parameterType="workspace">
+		UPDATE workspace
+		SET totbudget=#{totbudget}, empnos=#{empnos}, status=#{status}
+		WHERE spaceno=#{spaceno}
+	</update>
+	
+	<delete id="delwork" parameterType="int">
+		DELETE FROM workspace
+		WHERE spaceno = #{value}
+	</delete>
+	
+	<select id="empnos" resultType="string" parameterType="int">
+		SELECT empnos
+		FROM workspace
+		WHERE spaceno = #{value}
+	</select>
+	
+</mapper>
