@@ -63,19 +63,32 @@
     
 
 
-
-
-
-	
-
-
 <script type="text/javascript">
 	$(document).ready( function(){
 		
 		$('#emp_table').DataTable();
 		
 		
+		$('#region_create_btn').on('click', function(e) {
+
+            // Prevents the default action to be triggered. 
+            e.preventDefault();
+
+            // Triggering bPopup when click event is fired
+            $('#element_to_pop_up').bPopup();
+
+		});
 	});
+	
+	function close_popup(){
+		var pop = $("#element_to_pop_up").bPopup();
+		pop.close();		
+	}
+	function submit_popup(){
+		$("form[id=add_emp]").submit();
+		var pop = $("#element_to_pop_up").bPopup();
+		pop.close();		
+	}
 
 </script>
 </head>
@@ -260,26 +273,98 @@
 					<a href="#" class="btn btn-primary ">사원등록</a>
 				</div>
 				
+				<div id="element_to_pop_up" class="popup_hide">
+					<a class="b-close">x</a>
+					<form action="manpower.do" id="add_emp">
+						<input type="hidden" name="method" value="ins"/>
+						<div class="mb-3">
+							<div>
+								<span>이름 : </span>
+							</div>
+							<div>
+								<input type="text" id="name" name="name" class="length-80"/>
+							</div>
+						</div>
+
+						<div class="mb-3">
+							<div>
+								<span>부서번호 : </span>
+							</div>
+							<div>
+								<input type="text" id="deptno" name="deptno" class="length-80"/>
+							</div>
+						</div>
+						
+						<div class="mb-3">
+							<div>
+								<span>직책 : </span>
+							</div>
+							<div>
+								<input type="text" id="job" name="job" class="length-80"/>
+							</div>
+						</div>
+						
+						<div class="mb-3">
+							<div>
+								<span>이메일 : </span>
+							</div>
+							<div>
+								<input type="text" id="email" name="email" class="length-80"/>
+							</div>
+						</div>
+						
+						<div class="mb-3">
+							<div>
+								<span>아이디 : </span>
+							</div>
+							<div>
+								<input type="text" id="id" name="id" class="length-80"/>
+							</div>
+						</div>
+						
+						
+						<div class="mb-3">
+							<div>
+								<span>상태 : </span>
+							</div>
+							<div>
+								<input type="text" id="status" name="status" class="length-80"/>
+							</div>
+						</div>
+						
+						<div class="clearfix">
+							<div class="float-left mr-5">
+								<a href="javascript:submit_popup()" class="btn btn-primary"><span>생성하기</span></a>
+							</div>
+							<div class="float-left">
+								<a href="javascript:close_popup()" class="btn btn-secondary"><span>취소</span></a>								
+							</div>
+						</div>
+						
+						
+					</form>
+				</div>
+				
+				
 				<div id="region_table" class="">
 					<table id="emp_table">
 						<thead>
 							<tr>
-								<th>사번</th><th>이름</th><th>직책</th><th>입사일</th><th>이메일</th><th>부서명</th>
+								<th>사번</th><th>부서번호</th><th>이름</th><th>직책</th><th>이메일</th><th>아이디</th><th>상태</th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
-								<td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td>								
-							</tr>
-														<tr>
-								<td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td>								
-							</tr>
-														<tr>
-								<td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td>								
-							</tr>
-														<tr>
-								<td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td>								
-							</tr>
+						<tbody>						
+							<c:forEach var="emp" items="${elist }">
+								<tr>
+									<td>${emp.empno }</td>
+									<td>${emp.deptno }</td>
+									<td>${emp.name }</td>
+									<td>${emp.job }</td>
+									<td>${emp.email }</td>
+									<td>${emp.id }</td>
+									<td>${emp.status }</td>
+								</tr>						
+							</c:forEach>
 						</tbody>
 						
 					</table>

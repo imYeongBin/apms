@@ -2,14 +2,14 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
- <configuration>
- 	<typeAliases>
- 		<typeAlias alias="workspace" type="apms.VO.Workspace"/>
+<configuration>
+	<typeAliases>
+		<typeAlias alias="workspace" type="apms.VO.Workspace" />
+		<typeAlias alias="emp" type="apms.VO.Emp" />
+	</typeAliases>
+	<mappers>
 
- 	</typeAliases>
- 	<mappers>
-
- 		<mapper resource="Mapper/workspaceMapper.xml"/>
-
- 	</mappers>
- </configuration>
+		<mapper resource="Mapper/workspaceMapper.xml" />
+		<mapper resource="Mapper/manpowerMapper.xml" />
+	</mappers>
+</configuration>

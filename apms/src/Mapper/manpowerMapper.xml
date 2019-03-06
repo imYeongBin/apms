@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="apms.Database.Dao_manpower">
+	
+	<resultMap type="emp" id="empMap" />
+	<!-- emp List 가지고 오기 -->
+	<select id="elist" resultMap="empMap">
+		SELECT *
+		FROM emp
+		ORDER BY empno DESC
+	</select>
+	<!-- 
+	<resultMap type="dept" id="deptMap" />
+	dept List 가지고 오기
+	<select id="dlist" resultMap="deptMap">
+		SELECT * 
+		FROM dept
+	</select>
+	
+	<update id="update" parameterType="emp">
+		UPDATE emp
+		SET deptno=#{deptno},
+			job=#{job},
+			status=#{status}
+		WHERE empno = #{empno}
+	</update>
+	
+	<delete id="del" parameterType="emp">
+		DELETE FROM emp
+		WHERE empno = #{empno}
+	</delete> -->
+	
+	<!-- 	Emp e1 = new Emp(name, deptno,job,email,id,status);  -->
+	
+	<insert id="ins" parameterType="emp">
+		INSERT INTO emp(empno,name, deptno, job, email, id, status) values (seq_emp.nextval,#{name},#{deptno},#{job},#{email},#{id},#{status} )
+		
+	</insert>
+	
+	
+	
+</mapper>

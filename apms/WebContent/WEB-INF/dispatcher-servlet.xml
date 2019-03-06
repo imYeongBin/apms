@@ -36,7 +36,7 @@
 			classpath:/resource/properties/info 파일로 공통 정보가 key value
       		값으로 설정되어 있다.
 	-->
-	<context:property-placeholder location="classpath:Info/info" />
+	<context:property-placeholder location="classpath:info/info" />
 	
 	<!-- 
 	spring의 view를 선언하기
