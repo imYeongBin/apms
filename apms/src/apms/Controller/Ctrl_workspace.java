@@ -36,7 +36,7 @@ public class Ctrl_workspace {
 					  @RequestParam("empnos") String empnos,
 					  Model d) {
 		
-		Workspace e1 = new Workspace(title, pm,totbudget,status,fileno,empnos); 
+		Workspace e1 = new Workspace(title,pm,totbudget,status,fileno,empnos); 
 		service.ins(e1);
 
 		

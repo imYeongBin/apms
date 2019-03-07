@@ -73,15 +73,16 @@
 		
 
 		
-		var table = $('#project_table').DataTable();
+		var table = $('#todolist_table').DataTable();
 
-		$('#table_tbody').on('click', 'tr', function () {
+/* 
+ 	테이블 클릭시 이벤트 활용  
+ $('#table_tbody').on('click', 'tr', function () {
 			var data1 = table.row( this ).data();
 			alert(data1[0]);
-			location.href = "todolist.do?method=list&prjno="+data1[0];
 	 
 	    } );
-		
+ */		
 		
 		$('#region_create_btn').on('click', function(e) {
 
@@ -120,7 +121,7 @@
 		pop.close();		
 	}
 	function submit_popup(){
-		$("form[id=add_project]").submit();
+		$("form[id=add_todolist]").submit();
 		var pop = $("#element_to_pop_up").bPopup();
 		pop.close();		
 	}
@@ -306,26 +307,26 @@
 			</nav>
 			<div class="m-5">
 			<div class="text-left">
-				<div id="region_workspace_name" class="mb-5">
-					<span>${workspaceName }</span>
+				<div id="region_project_name" class="mb-5">
+					<span>${projectName }</span>
 				</div>
 			</div>
 				
 			<div class="text-right">
 				<div id="region_create_btn" class="mb-5">
-					<a href="#" class="btn btn-primary ">프로젝트생성</a>
+					<a href="#" class="btn btn-primary ">todo list 생성</a> 
 				</div>
 			</div>
 				
 				
 				<div id="element_to_pop_up" class="popup_hide">
 					<a class="b-close">x</a>
-					<form action="project.do" id="add_project">
+					<form action="todolist.do" id="add_todolist">
 						<input type="hidden" name="method" value="ins"/>
-						<input type="hidden" name="spaceno" value="${spaceno}" />
+						<input type="hidden" name="prjno" value="${prjno}" />
 						<div class="mb-3">
 							<div class="text-center ">
-								<span class="text-bold">${workspaceName}</span>
+								<span class="text-bold">${projectName}</span>
 							</div>							
 						</div>
 						
@@ -352,7 +353,7 @@
 								<span>프로젝트예산 : </span>
 							</div>
 							<div>
-								<input type="text" id="prjbudget" name="prjbudget" class="length-80"/>
+								<input type="text" id="todolistbudget" name="todolistbudget" class="length-80"/>
 							</div>
 						</div>
 						
@@ -416,24 +417,24 @@
 				
 				
 				<div id="region_table" class="">
-					<table id="project_table">
+					<table id="todolist_table">
 						<thead>
 							<tr>
 								<th>번호</th><th>타이틀</th><th>담당자</th><th>프로젝트예산</th><th>시작일</th><th>종료일</th><th>상태</th><th>파일번호</th><th>참가인원</th>
 							</tr>
 						</thead>
 						<tbody id="table_tbody">						
-							<c:forEach var="project" items="${plist }">
+							<c:forEach var="todolist" items="${tlist }">
 								<tr>
-									<td>${project.prjno}</td>
-									<td>${project.title}</td>
-									<td>${project.pm}</td>
-									<td>${project.prjbudget}</td>
-									<td>  <fmt:formatDate value="${project.begindate}" pattern="yyyy-MM-dd" /></td>
-									<td>  <fmt:formatDate value="${project.enddate}" pattern="yyyy-MM-dd" /></td>
-									<td>${project.status}</td>
-									<td>${project.fileno}</td>
-									<td>${project.empnos}</td>
+									<td>${todolist.todono}</td>
+									<td>${todolist.title}</td>
+									<td>${todolist.pm}</td>
+									<td>${todolist.todolistbudget}</td>
+									<td>  <fmt:formatDate value="${todolist.begindate}" pattern="yyyy-MM-dd" /></td>
+									<td>  <fmt:formatDate value="${todolist.enddate}" pattern="yyyy-MM-dd" /></td>
+									<td>${todolist.status}</td>
+									<td>${todolist.fileno}</td>
+									<td>${todolist.empnos}</td>
 
 								</tr>						
 							</c:forEach>

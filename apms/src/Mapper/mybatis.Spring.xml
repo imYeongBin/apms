@@ -7,11 +7,13 @@
 		<typeAlias alias="workspace" type="apms.VO.Workspace" />
 		<typeAlias alias="emp" type="apms.VO.Emp" />
 		<typeAlias alias="project" type="apms.VO.Project" />
+		<typeAlias alias="todolist" type="apms.VO.Todolist" />
 	</typeAliases>
 	<mappers>
 
 		<mapper resource="Mapper/workspaceMapper.xml" />
 		<mapper resource="Mapper/manpowerMapper.xml" />
 		<mapper resource="Mapper/projectMapper.xml" />
+		<mapper resource="Mapper/todolistMapper.xml" />
 	</mappers>
 </configuration>

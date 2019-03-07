@@ -1,9 +1,6 @@
 package apms.Controller;
 
 import java.text.ParseException;
-import java.util.Date;
-
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,35 +8,35 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import apms.Service.Service_project;
-import apms.VO.Project;
+import apms.Service.Service_todolist;
+import apms.VO.Todolist;
 
 
 
 
 @Controller
-@RequestMapping("/project.do")
-public class Ctrl_project {
-	//http://localhost:8080/apms/project.do?method=list
+@RequestMapping("/todolist.do")
+public class Ctrl_todolist {
+	//http://localhost:8080/apms/todolist.do?method=list
 	@Autowired(required=false)
-	Service_project service;
+	Service_todolist service;
 	
 	@RequestMapping(params="method=list")
-	public String list(Project w, Model d,@RequestParam("spaceno") int spaceno) {
+	public String list(Model d,@RequestParam("prjno") int prjno) {
 
-		d.addAttribute("spaceno",spaceno);
-		d.addAttribute("workspaceName",service.spaceName(spaceno));
-		d.addAttribute("plist",service.plist(spaceno));
-		return "main/project";
+		d.addAttribute("prjno",prjno);
+		d.addAttribute("projectName",service.projectName(prjno));
+		d.addAttribute("tlist",service.tlist(prjno));
+		return "main/todolist";
 	}
 	
 	
 
 	@RequestMapping(params="method=ins")
-	public String ins(@RequestParam("spaceno") int spaceno,
+	public String ins(@RequestParam("prjno") int prjno,
 					  @RequestParam("title") String title,
 					  @RequestParam("pm") int pm,
-					  @RequestParam("prjbudget") int prjbudget,
+					  @RequestParam("todolistbudget") int todolistbudget,
 					  @RequestParam("begindate") String begindate,
 					  @RequestParam("enddate") String enddate,
 					  @RequestParam("status") String status,
@@ -52,10 +49,10 @@ public class Ctrl_project {
 		java.text.SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("yyyy-MM-dd");
 		java.util.Date data2 = sdf2.parse(enddate);
 
-		Project e1 = new Project(spaceno,title,pm,prjbudget,data1,data2,status,fileno,empnos); 
+		Todolist e1 = new Todolist(prjno,title,pm,todolistbudget,data1,data2,status,fileno,empnos); 
 		service.ins(e1);
 		
-		return "redirect:project.do?method=list&spaceno="+spaceno;
+		return "redirect:todolist.do?method=list&prjno="+prjno;
 		
 	
 	}

@@ -66,8 +66,14 @@
 <script type="text/javascript">
 	$(document).ready( function(){
 		
-		$('#workspace_table').DataTable();
-		
+		var table = $('#workspace_table').DataTable();
+
+		$('#table_tbody').on('click', 'tr', function () {
+			var data1 = table.row( this ).data();
+			alert(data1[0]);
+			location.href = "project.do?method=list&spaceno="+data1[0];
+	 
+	    } );
 		
 		$('#region_create_btn').on('click', function(e) {
 
@@ -123,6 +129,10 @@
         <div id="workspace" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Workspace:</h6>
+            <c:forEach var="workspace" items="${wlist}">
+            	<a class="collapse-item" href="redirect:">1번 워크스페이스</a>
+            </c:forEach>
+            
             <a class="collapse-item" href="workspace.do?method=list">1번 워크스페이스</a>
             <a class="collapse-item" href="workspace.do?method=list">2번 워크스페이스</a>
             <a class="collapse-item" href="workspace.do?method=list">3번 워크스페이스</a>
@@ -348,7 +358,7 @@
 								<th>번호</th><th>타이틀</th><th>담당자</th><th>전체예산</th><th>상태</th><th>파일번호</th><th>참가인원</th>
 							</tr>
 						</thead>
-						<tbody>						
+						<tbody id="table_tbody">						
 							<c:forEach var="workspace" items="${wlist }">
 								<tr>
 									<td>${workspace.spaceno}</td>

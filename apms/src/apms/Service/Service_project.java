@@ -17,14 +17,16 @@ public class Service_project {
 	@Autowired(required=false)
 	Dao_project dao;
 	
-	public ArrayList<Project> plist(){
+	public ArrayList<Project> plist(int spaceno){
 		
-		return dao.plist();
+		return dao.plist(spaceno);
 	}
 	
 	public void ins(Project w) {
 		dao.ins(w);
 	};
 	
-	
+	public String spaceName(int spaceno) {
+		return dao.spaceName(spaceno);
+	}
 }

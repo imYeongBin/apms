@@ -2,25 +2,25 @@
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="apms.Database.Dao_project">
+<mapper namespace="apms.Database.Dao_todolist">
 	
- 	<resultMap type="project" id="prjMap" />
-	<select id="plist" resultMap="prjMap" parameterType="int">
+ 	<resultMap type="todolist" id="tdMap" />
+	<select id="tlist" resultMap="tdMap" parameterType="int">
 		SELECT * 
-		FROM project 
-		WHERE spaceno = #{spaceno} 
-		ORDER BY prjno DESC
+		FROM todolist 
+		WHERE prjno = #{prjno} 
+		ORDER BY todono DESC
 	</select>
 	
-	<insert id="ins" parameterType="project">
-		INSERT INTO project(prjno, spaceno, title, pm, prjbudget, begindate,enddate, status, fileno, empnos) 
-		VALUES (seq_project.nextval,#{spaceno}, #{title}, #{pm},#{prjbudget},TO_CHAR(#{begindate},'yyyy-mm-dd'),TO_CHAR(#{enddate},'yyyy-mm-dd'),#{status},#{fileno}, #{empnos})
+	<insert id="ins" parameterType="todolist">
+		INSERT INTO todolist(todono, prjno, title, pm, todolistbudget, begindate,enddate, status, fileno, empnos) 
+		VALUES (seq_todolist.nextval,#{prjno}, #{title}, #{pm},#{todolistbudget},TO_CHAR(#{begindate},'yyyy-mm-dd'),TO_CHAR(#{enddate},'yyyy-mm-dd'),#{status},#{fileno}, #{empnos})
 	</insert>
 	
-	<select id="spaceName" resultType="String" parameterType="int">
+	<select id="projectName" resultType="String" parameterType="int">
 		select title 
-		from workspace 
-		where spaceno = #{spaceno}
+		from project 
+		where prjno = #{prjno}
 	</select>
 	
 	

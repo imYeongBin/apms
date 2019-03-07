@@ -121,7 +121,7 @@
         </a>
         <div id="workspace" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Workspace:</h6>
+            <h6 class="collapse-header">Workspace:</h6>            
             <a class="collapse-item" href="workspace.do?method=list">1번 워크스페이스</a>
             <a class="collapse-item" href="workspace.do?method=list">2번 워크스페이스</a>
             <a class="collapse-item" href="workspace.do?method=list">3번 워크스페이스</a>
