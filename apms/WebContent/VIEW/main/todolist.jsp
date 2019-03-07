@@ -25,12 +25,17 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 	<link rel="stylesheet" href="${path}/bootstrap/css/sb-admin-2.min.css" >
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+	
+
 	<!-- CSS Style은 순서대로 적용되기 때문에 Custom CSS는 여기 하단으로 추가해주세요. -->
 	<link rel="stylesheet" href="${path}/CSS/custom.css" >
 	<!-- jsTree CSS -->
 	<link rel="stylesheet" href="${path}/JS/jstree/dist/themes/default/style.min.css" />
 	
 	<!-- datatable CSS -->	 	
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/select/1.2.7/css/select.dataTables.min.css">
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/> 
 	<style type="text/css">
 
@@ -44,6 +49,11 @@
 	<!-- jsTree js(https://www.jstree.com/) -->
 	<script src="${path}/JS/jstree/dist/jstree.min.js"></script>
   	<!-- datatables -->
+	
+
+  	<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  	<script type="text/javascript" src="https://cdn.datatables.net/select/1.2.7/js/dataTables.select.min.js"></script>
+  	
 	<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
 
   	<!-- Script 설정(jquery) -->
@@ -73,7 +83,19 @@
 		
 
 		
-		var table = $('#todolist_table').DataTable();
+		var table = $('#todolist_table').DataTable({
+	        columnDefs: [ {
+	            orderable: false,
+	            className: 'select-checkbox',
+	            targets:   0
+	        } ],
+	        select: {
+	            style:    'multi',
+	            selector: 'td:first-child'
+	        },
+	        
+	        order: [[ 1, 'asc' ]]
+	    });
 
 /* 
  	테이블 클릭시 이벤트 활용  
@@ -84,7 +106,7 @@
 	    } );
  */		
 		
-		$('#region_create_btn').on('click', function(e) {
+		$('#create_btn').on('click', function(e) {
 
             // Prevents the default action to be triggered. 
             e.preventDefault();
@@ -93,7 +115,16 @@
             $('#element_to_pop_up').bPopup();
 
 		});
+ 
+		$('#modify_btn').on('click', function(e) {
+						
+            // Prevents the default action to be triggered. 
+            e.preventDefault();
 
+            // Triggering bPopup when click event is fired
+            $('#element_to_pop_up2').bPopup();
+
+		});
 		
 		
 	});
@@ -124,6 +155,15 @@
 		$("form[id=add_todolist]").submit();
 		var pop = $("#element_to_pop_up").bPopup();
 		pop.close();		
+	}
+	function close_popup2(){
+		var pop2 = $("#element_to_pop_up2").bPopup();
+		pop2.close();		
+	}
+	function submit_popup2(){
+		$("form[id=add_todolist]").submit();
+		var pop2 = $("#element_to_pop_up2").bPopup();
+		pop2.close();		
 	}
 
 
@@ -312,10 +352,15 @@
 				</div>
 			</div>
 				
-			<div class="text-right">
-				<div id="region_create_btn" class="mb-5">
-					<a href="#" class="btn btn-primary ">todo list 생성</a> 
+			<div class="text-right clearfix">
+
+				<div id="region_create_btn" class="mb-5 float-right">
+					<a href="#" class="btn btn-primary "id="create_btn">todo list 생성</a> 
 				</div>
+				<div id="region_modify_btn" class="mb-5 float-left">
+					<a href="#" class="btn btn-danger "id="modify_btn">todo list 상태변경</a> 
+				</div>
+
 			</div>
 				
 				
@@ -415,17 +460,46 @@
 					</form>
 				</div>
 				
+				<div id="element_to_pop_up2" class="popup_hide element_to_pop_up">
+					<a class="b-close">x</a>
+					<form action="todolist.do" id="modify_todolist_status">
+						<input type="hidden" name="method" value="upd_status"/>		
+						<select name="choose_option" id="choose_option" class="mb-3">
+							<option value="준비중">준비중</option>
+							<option value="진행중">진행중</option>
+							<option value="완료">완료</option>
+						</select>
+						<div class="clearfix">
+							<div class="float-left mr-5">
+								<a href="javascript:submit_popup2()" class="btn btn-primary"><span>변경하기</span></a>
+							</div>
+							<div class="float-left">
+								<a href="javascript:close_popup2()" class="btn btn-secondary"><span>취소</span></a>								
+							</div>
+						</div>
+						
+						
+					</form>
+				</div>
+				
+				
+				
+				
+				
+				
+				
 				
 				<div id="region_table" class="">
 					<table id="todolist_table">
 						<thead>
 							<tr>
-								<th>번호</th><th>타이틀</th><th>담당자</th><th>프로젝트예산</th><th>시작일</th><th>종료일</th><th>상태</th><th>파일번호</th><th>참가인원</th>
+								<th></th><th>번호</th><th>타이틀</th><th>담당자</th><th>프로젝트예산</th><th>시작일</th><th>종료일</th><th>상태</th><th>파일번호</th><th>참가인원</th>
 							</tr>
 						</thead>
 						<tbody id="table_tbody">						
 							<c:forEach var="todolist" items="${tlist }">
 								<tr>
+									<td></td>
 									<td>${todolist.todono}</td>
 									<td>${todolist.title}</td>
 									<td>${todolist.pm}</td>
