@@ -157,9 +157,25 @@
 		      icon.closest( ".portlet" ).find( ".portlet-content" ).toggle();
 		    });
 		
-		
-		
+		    
+		    
+		    
+		/* todolist 상태변경    onmouseup*/
+	//$(".choose").onmouseup();
+		    
+		    
+		    
+		    
+	/* end of window~ */	 
 	});
+	
+	function ttt(){
+			//var data = $(this).parent().attr("id").val();
+			alert($(this).next().first()); 
+
+	};
+	
+	
 	$(function(){
 		// datepicker 설정
 		// 참조 : https://blog.naver.com/komj707/221447084954
@@ -456,7 +472,12 @@
 								<span>작업상태 : </span>
 							</div>
 							<div>
-								<input type="text" id="status" name="status" class="length-80"/>
+								<select name="status" id="status" class="length-80">
+									<option value="status1">준비중</option>
+									<option value="status2">작업중</option>
+									<option value="status3">완료</option>
+								</select>
+
 							</div>
 						</div>
 						
@@ -522,11 +543,11 @@
 				
 				<!-- portlet -->
 				<div id="region_portlet" class="">
-
 						<div class="column" id="status1">
+									<input type="hidden" name="tip" value="status1"/>
 							<c:forEach var="todo" items="${tlist }">
-								<c:if test="${todo.status == 1}">
-									<div class="portlet">
+								<c:if test="${todo.status == 'status1'}">
+									<div class="portlet choose">
 										<div class="portlet-header">${todo.title }</div>
 										<div class="portlet-content">
 											<div id="pm">
@@ -561,8 +582,8 @@
 
 						<div class="column" id="status2">
 							<c:forEach var="todo" items="${tlist }">
-								<c:if test="${todo.status == 2}">
-									<div class="portlet">
+								<c:if test="${todo.status =='status2'}">
+									<div class="portlet choose" onmouseup="javascript:ttt()">
 										<div class="portlet-header">${todo.title }</div>
 										<div class="portlet-content">
 											<div id="pm">
@@ -594,8 +615,8 @@
 
 						<div class="column" id="status3">
 							<c:forEach var="todo" items="${tlist }">
-								<c:if test="${todo.status == 3}">
-									<div class="portlet">
+								<c:if test="${todo.status == 'status3'}">
+									<div class="portlet choose">
 										<div class="portlet-header">${todo.title }</div>
 										<div class="portlet-content">
 											<div id="pm">
