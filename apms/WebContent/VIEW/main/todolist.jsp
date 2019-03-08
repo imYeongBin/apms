@@ -6,6 +6,14 @@
  <c:set var="path" value="${pageContext.request.contextPath}"/>
  <fmt:requestEncoding value="utf-8"/>
 
+
+<!-- todolist 는  jquery portlets 활용 -->
+
+
+
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -127,6 +135,30 @@
 		});
 		
 		
+		
+		/* portlet */
+		
+		$( ".column" ).sortable({
+		      connectWith: ".column",
+		      handle: ".portlet-header",
+		      cancel: ".portlet-toggle",
+		      placeholder: "portlet-placeholder ui-corner-all"
+		    });
+		 
+		    $( ".portlet" )
+		      .addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
+		      .find( ".portlet-header" )
+		        .addClass( "ui-widget-header ui-corner-all" )
+		        .prepend( "<span class='ui-icon ui-icon-minusthick portlet-toggle'></span>");
+		 
+		    $( ".portlet-toggle" ).on( "click", function() {
+		      var icon = $( this );
+		      icon.toggleClass( "ui-icon-minusthick ui-icon-plusthick" );
+		      icon.closest( ".portlet" ).find( ".portlet-content" ).toggle();
+		    });
+		
+		
+		
 	});
 	$(function(){
 		// datepicker 설정
@@ -169,7 +201,7 @@
 
 </script>
 </head>
-<body id="page-top">
+<body id="page-top" class="portlet">
 <!-- Page Wrapper -->
   <div id="wrapper">
 
@@ -488,34 +520,117 @@
 				
 				
 				
-				
-				<div id="region_table" class="">
-					<table id="todolist_table">
-						<thead>
-							<tr>
-								<th></th><th>번호</th><th>타이틀</th><th>담당자</th><th>프로젝트예산</th><th>시작일</th><th>종료일</th><th>상태</th><th>파일번호</th><th>참가인원</th>
-							</tr>
-						</thead>
-						<tbody id="table_tbody">						
-							<c:forEach var="todolist" items="${tlist }">
-								<tr>
-									<td></td>
-									<td>${todolist.todono}</td>
-									<td>${todolist.title}</td>
-									<td>${todolist.pm}</td>
-									<td>${todolist.todolistbudget}</td>
-									<td>  <fmt:formatDate value="${todolist.begindate}" pattern="yyyy-MM-dd" /></td>
-									<td>  <fmt:formatDate value="${todolist.enddate}" pattern="yyyy-MM-dd" /></td>
-									<td>${todolist.status}</td>
-									<td>${todolist.fileno}</td>
-									<td>${todolist.empnos}</td>
+				<!-- portlet -->
+				<div id="region_portlet" class="">
 
-								</tr>						
+						<div class="column" id="status1">
+							<c:forEach var="todo" items="${tlist }">
+								<c:if test="${todo.status == 1}">
+									<div class="portlet">
+										<div class="portlet-header">${todo.title }</div>
+										<div class="portlet-content">
+											<div id="pm">
+												<div><span>담당자 :</span></div>
+												<span>${todo.pm} </span>
+											</div>
+											<div id="todolistbudget">
+												<div><span>예산 :</span></div>
+												<span>${todo.todolistbudget} </span>
+											</div>
+											<div id="begindate">
+												<div><span>시작일 :</span></div>
+												<span><fmt:formatDate value="${todo.begindate}" pattern="yyyy-MM-dd" /></span>
+											</div>
+											<div id="enddate">
+												<div><span>종료일 :</span></div>
+												<span><fmt:formatDate value="${todo.enddate}" pattern="yyyy-MM-dd" /></span>
+											</div>
+											<div id="empnos">
+												<div><span>참가자 :</span></div>
+												<span>${todo.empnos} </span>
+											</div>
+										</div>
+									</div>									
+								</c:if>
 							</c:forEach>
-						</tbody>
-						
-					</table>
-				</div>
+						</div>
+
+
+
+
+
+						<div class="column" id="status2">
+							<c:forEach var="todo" items="${tlist }">
+								<c:if test="${todo.status == 2}">
+									<div class="portlet">
+										<div class="portlet-header">${todo.title }</div>
+										<div class="portlet-content">
+											<div id="pm">
+												<div><span>담당자 :</span></div>
+												<span>${todo.pm} </span>
+											</div>
+											<div id="todolistbudget">
+												<div><span>예산 :</span></div>
+												<span>${todo.todolistbudget} </span>
+											</div>
+											<div id="begindate">
+												<div><span>시작일 :</span></div>
+												<span><fmt:formatDate value="${todo.begindate}" pattern="yyyy-MM-dd" /></span>
+											</div>
+											<div id="enddate">
+												<div><span>종료일 :</span></div>
+												<span><fmt:formatDate value="${todo.enddate}" pattern="yyyy-MM-dd" /></span>
+											</div>
+											<div id="empnos">
+												<div><span>참가자 :</span></div>
+												<span>${todo.empnos} </span>
+											</div>
+										</div>
+									</div>									
+								</c:if>
+							</c:forEach>
+
+						</div>
+
+						<div class="column" id="status3">
+							<c:forEach var="todo" items="${tlist }">
+								<c:if test="${todo.status == 3}">
+									<div class="portlet">
+										<div class="portlet-header">${todo.title }</div>
+										<div class="portlet-content">
+											<div id="pm">
+												<div><span>담당자 :</span></div>
+												<span>${todo.pm} </span>
+											</div>
+											<div id="todolistbudget">
+												<div><span>예산 :</span></div>
+												<span>${todo.todolistbudget} </span>
+											</div>
+											<div id="Begindate">
+												<div><span>시작일 :</span></div>
+												<span><fmt:formatDate value="${todo.begindate}" pattern="yyyy-MM-dd" /></span>
+											</div>
+											<div id="Enddate">
+												<div><span>시작일 :</span></div>
+												<span><fmt:formatDate value="${todo.enddate}" pattern="yyyy-MM-dd" /></span>
+											</div>
+											<div id="empnos">
+												<div><span>참가자 :</span></div>
+												<span>${todo.empnos} </span>
+											</div>
+										</div>
+									</div>									
+								</c:if>
+							</c:forEach>
+
+						</div>
+
+
+
+
+
+
+					</div>
 			</div>
 			
 		

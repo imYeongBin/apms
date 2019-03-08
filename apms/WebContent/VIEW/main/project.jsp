@@ -83,7 +83,7 @@
 	    } );
 		
 		
-		$('#region_create_btn').on('click', function(e) {
+		$('#create_btn').on('click', function(e) {
 
             // Prevents the default action to be triggered. 
             e.preventDefault();
@@ -93,6 +93,12 @@
 
 		});
 
+	
+	/*  draggable & sortable */	
+
+	    $( "#sortable" ).sortable();
+	    $( "#sortable" ).disableSelection();
+		
 		
 		
 	});
@@ -108,6 +114,15 @@
 			monthNames:["01월","02월","03월","04월","05월","06월",
 						"07월","08월","09월","10월","11월","12월"]
 		});
+		
+		
+		$(".w-box").on("dblclick",function(){
+			var choosen_prjno = $(this).find(".prjno").text();
+			location.href = "todolist.do?method=list&prjno="+choosen_prjno;
+			
+		});
+		
+		
 		
 	});
 
@@ -307,13 +322,13 @@
 			<div class="m-5">
 			<div class="text-left">
 				<div id="region_workspace_name" class="mb-5">
-					<span>${workspaceName }</span>
+					<span>workspaceName</span>
 				</div>
 			</div>
 				
 			<div class="text-right">
 				<div id="region_create_btn" class="mb-5">
-					<a href="#" class="btn btn-primary ">프로젝트생성</a>
+					<a href="#" class="btn btn-primary " id="create_btn">프로젝트생성</a>
 				</div>
 			</div>
 				
@@ -325,7 +340,7 @@
 						<input type="hidden" name="spaceno" value="${spaceno}" />
 						<div class="mb-3">
 							<div class="text-center ">
-								<span class="text-bold">${workspaceName}</span>
+								<span class="text-bold">${ workspaceName}</span>
 							</div>							
 						</div>
 						
@@ -413,39 +428,143 @@
 						
 					</form>
 				</div>
-				
-				
-				<div id="region_table" class="">
-					<table id="project_table">
-						<thead>
-							<tr>
-								<th>번호</th><th>타이틀</th><th>담당자</th><th>프로젝트예산</th><th>시작일</th><th>종료일</th><th>상태</th><th>파일번호</th><th>참가인원</th>
-							</tr>
-						</thead>
-						<tbody id="table_tbody">						
-							<c:forEach var="project" items="${plist }">
-								<tr>
-									<td>${project.prjno}</td>
-									<td>${project.title}</td>
-									<td>${project.pm}</td>
-									<td>${project.prjbudget}</td>
-									<td>  <fmt:formatDate value="${project.begindate}" pattern="yyyy-MM-dd" /></td>
-									<td>  <fmt:formatDate value="${project.enddate}" pattern="yyyy-MM-dd" /></td>
-									<td>${project.status}</td>
-									<td>${project.fileno}</td>
-									<td>${project.empnos}</td>
 
-								</tr>						
-							</c:forEach>
-						</tbody>
-						
-					</table>
-				</div>
+				
 			</div>
+
+										
+			<div class="mb-4" style="background-color:gold">
+			<div><hr class="alert-secondary"></div>
 			
-		
+			
+			
+				<!-- drag&sort card lists -->
+
+				<ul id="sortable">				
+					<c:forEach var="project" items="${plist }">
+						<li class="clearfix float-left">					
+							<div class="w-box m-4">
+								<div class="ml-3 mt-3 "> 
+									<div class="input_title">
+										<span>프로젝트번호</span>
+									</div>						
+									<div class="ml-3 input_font">
+										<span class="prjno">${project.prjno }</span>
+									</div>
+								</div>
+								<div class="ml-3 mt-2 "> 
+									<div class="input_title">
+										<span>프로젝트명</span>
+									</div>						
+									<div class="ml-3 input_font">
+										<span>${project.title }</span>
+									</div>
+								</div>
+								<div class="ml-3 mt-2 "> 
+									<div class="input_title">
+										<span>담당자</span>
+									</div>
+									<div class="ml-3 input_font">
+										<span>${project.pm }</span>
+									</div>
+								</div>
+								<div class="ml-3 mt-2 "> 
+									<div class="input_title">
+										<span>참여자</span>
+									</div>
+									<div class="ml-3 input_font">
+										<span>${project.pm }외   명</span>
+									</div>
+								</div>
+								<div class="ml-3 mt-2 "> 
+									<div class="input_title">
+										<span>프로젝트예산</span>
+									</div>
+									<div class="ml-3 input_font">
+										<span>${project.prjbudget }</span>
+									</div>
+								</div>
+								<div class="ml-3 mt-2 "> 
+									<div class="input_title">
+										<span>시작일</span>
+									</div>
+									<div class="ml-3 input_font">
+										<span><fmt:formatDate value="${project.begindate}" pattern="yyyy-MM-dd" /></span>
+									</div>
+								</div>
+								<div class="ml-3 mt-2 "> 
+									<div class="input_title">
+										<span>종료일</span>
+									</div>
+									<div class="ml-3 input_font">
+										<span><fmt:formatDate value="${project.enddate}" pattern="yyyy-MM-dd" /></span>
+									</div>
+								</div>
+							</div>
+						</li>		
+					</c:forEach>	
+					<li class="clearfix float-left">					
+							<div class="w-box m-4">
+								<div class="ml-3 mt-2 "> 
+									<div class="input_title">
+										<span>프로젝트명</span>
+									</div>						
+									<div class="ml-3 input_font">
+										<span>${project.title }</span>
+									</div>
+								</div>
+								<div class="ml-3 mt-2 "> 
+									<div class="input_title">
+										<span>담당자</span>
+									</div>
+									<div class="ml-3 input_font">
+										<span>${project.pm }</span>
+									</div>
+								</div>
+								<div class="ml-3 mt-2 "> 
+									<div class="input_title">
+										<span>참여자</span>
+									</div>
+									<div class="ml-3 input_font">
+										<span>${project.pm }외   명</span>
+									</div>
+								</div>
+								<div class="ml-3 mt-2 "> 
+									<div class="input_title">
+										<span>프로젝트예산</span>
+									</div>
+									<div class="ml-3 input_font">
+										<span>${project.prjbudget }</span>
+									</div>
+								</div>
+								<div class="ml-3 mt-2 "> 
+									<div class="input_title">
+										<span>시작일</span>
+									</div>
+									<div class="ml-3 input_font">
+										<span>${project.begindate }</span>
+									</div>
+								</div>
+								<div class="ml-3 mt-2 "> 
+									<div class="input_title">
+										<span>종료일</span>
+									</div>
+									<div class="ml-3 input_font">
+										<span>${project.enddate }</span>
+									</div>
+								</div>
+							</div>
+						</li>				
+				</ul>	
+				
+							
+			</div>
 		
 		</div>
+
+		
+		
+		
 	</div>
 
 
