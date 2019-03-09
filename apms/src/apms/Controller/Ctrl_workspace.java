@@ -15,7 +15,7 @@ import apms.VO.Workspace;
 @Controller
 @RequestMapping("/workspace.do")
 public class Ctrl_workspace {
-	//http://172.30.1.37:8080/apms/workspace.do?method=list
+	// http://172.30.1.37:8080/apms/workspace.do?method=list
 	@Autowired(required=false)
 	Service_workspace service;
 	

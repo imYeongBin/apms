@@ -31,6 +31,39 @@
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
 	</context:component-scan>
+	
+	
+	     <!-- 소켙통신을 이름과 url을 매핑 처리..
+      1. mvc default-servlet-handler 선언.
+      2. websocket:handlers를 통해 url과 호출 handler 매핑.
+       -->
+      <!-- 웹  소켙통신을 할 수 있는 모듈  기본 handlermapping 클래스와
+      adapter, 선언.. -->
+      <bean id="annotationUrlMapping" 
+      class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
+      <bean id="controllerClassNameHandlerMapping" 
+      class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"/>
+       <bean id="annotationMethodHandlerAdapter" 
+      class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/>
+      <websocket:handlers >
+      	<websocket:mapping handler="chatHandler" path="/chat-ws.do"/>
+      </websocket:handlers>
+       <mvc:default-servlet-handler/>
+	
+	      <!-- 
+      spring의 view를 선언하기..
+      1. .jsp
+      2. bean ajax json(spring 지원): ArrayList  json  한글 엔코  view단
+      3. bean 파일 업로드, 다운로드.
+      4. bean excel, pdf, ..
+      5. bean 소켙통신 
+      
+       -->
+	
+	
+	
+	
+	
 	<!-- 공통 설정 정보 위치 지정 : context:property-placeholder 
 		classpath는 현재 src로 설정되어
 			classpath:/resource/properties/info 파일로 공통 정보가 key value

@@ -156,25 +156,19 @@
 		      icon.toggleClass( "ui-icon-minusthick ui-icon-plusthick" );
 		      icon.closest( ".portlet" ).find( ".portlet-content" ).toggle();
 		    });
-		
+			
 		    
 		    
 		    
 		/* todolist 상태변경    onmouseup*/
-	//$(".choose").onmouseup();
+			
 		    
 		    
 		    
 		    
 	/* end of window~ */	 
 	});
-	
-	function ttt(){
-			//var data = $(this).parent().attr("id").val();
-			alert($(this).next().first()); 
 
-	};
-	
 	
 	$(function(){
 		// datepicker 설정
@@ -583,7 +577,7 @@
 						<div class="column" id="status2">
 							<c:forEach var="todo" items="${tlist }">
 								<c:if test="${todo.status =='status2'}">
-									<div class="portlet choose" onmouseup="javascript:ttt()">
+									<div class="portlet choose">
 										<div class="portlet-header">${todo.title }</div>
 										<div class="portlet-content">
 											<div id="pm">

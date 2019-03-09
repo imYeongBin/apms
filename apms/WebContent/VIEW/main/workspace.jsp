@@ -255,14 +255,28 @@
       
        <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="${path }/chat.do">
           <i class="fas fa-fw fa-comments"></i>
           <span>Chating</span></a>
       </li>
 
     </ul>
     <!-- End of Sidebar -->
-
+	<!-- chatting bpopup -->
+	<div>
+		<div id="element_to_pop_up3" class="popup_hide">
+			<a class="b-close">x</a>
+			<form action="chat.do" id="open_form">
+				<input type="hidden" name="method" value="chat"/>
+			</form>
+		</div>
+	
+	</div>
+	
+	
+	
+	
+	
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
