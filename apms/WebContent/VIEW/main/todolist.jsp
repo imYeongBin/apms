@@ -388,22 +388,38 @@
 			
 			</nav>
 			<div class="m-5">
-			<div class="text-left">
-				<div id="region_project_name" class="mb-5">
-					<span>${projectName }</span>
+				<div class="text-left">
+					<div id="region_project_name" class="mb-5">
+						<span>${projectName }</span>
+					</div>
 				</div>
-			</div>
 				
-			<div class="text-right clearfix">
-
-				<div id="region_create_btn" class="mb-5 float-right">
-					<a href="#" class="btn btn-primary "id="create_btn">todo list 생성</a> 
+				<div class="text-right clearfix">
+					<div id="region_create_btn" class="mb-5 float-right">
+						<div>
+							<a href="#" class="btn btn-primary "id="create_btn">todo list 생성</a> 
+						</div>
+					</div>					
+					<div id="region_modify_btn" class="mb-5 float-left">
+						<div>
+							<a href="#" class="btn btn-danger "id="modify_btn">todo list 상태변경</a> 
+						</div>
+					</div>					
+					<div class="float-left mt-5 ml-5 clearfix width100 parent">
+						<div class="float-left bgd-blue width30 text-center p-2 bgd-blue">
+							<span>준비중</span>
+						</div>
+						<div class="float-left bgd-gold width30 text-center p-2 bgd-blue">
+							<span>작업중</span>
+						</div>
+						<div class="float-left bgd-tomato width30 text-center p-2 bgd-blue">
+							<span>완료</span>
+						</div>
+					</div>
+					
 				</div>
-				<div id="region_modify_btn" class="mb-5 float-left">
-					<a href="#" class="btn btn-danger "id="modify_btn">todo list 상태변경</a> 
-				</div>
+		
 
-			</div>
 				
 				
 				<div id="element_to_pop_up" class="popup_hide">
@@ -502,8 +518,6 @@
 								<a href="javascript:close_popup()" class="btn btn-secondary"><span>취소</span></a>								
 							</div>
 						</div>
-						
-						
 					</form>
 				</div>
 				
@@ -537,12 +551,12 @@
 				
 				<!-- portlet -->
 				<div id="region_portlet" class="">
-						<div class="column" id="status1">
+						<div class="column" id="status1"> 
 									<input type="hidden" name="tip" value="status1"/>
 							<c:forEach var="todo" items="${tlist }">
 								<c:if test="${todo.status == 'status1'}">
 									<div class="portlet choose">
-										<div class="portlet-header">${todo.title }</div>
+										<div class="portlet-header text-center">${todo.title }</div>
 										<div class="portlet-content">
 											<div id="pm">
 												<div><span>담당자 :</span></div>
@@ -578,7 +592,7 @@
 							<c:forEach var="todo" items="${tlist }">
 								<c:if test="${todo.status =='status2'}">
 									<div class="portlet choose">
-										<div class="portlet-header">${todo.title }</div>
+										<div class="portlet-header text-center">${todo.title }</div>
 										<div class="portlet-content">
 											<div id="pm">
 												<div><span>담당자 :</span></div>
@@ -611,7 +625,7 @@
 							<c:forEach var="todo" items="${tlist }">
 								<c:if test="${todo.status == 'status3'}">
 									<div class="portlet choose">
-										<div class="portlet-header">${todo.title }</div>
+										<div class="portlet-header text-center">${todo.title }</div>
 										<div class="portlet-content">
 											<div id="pm">
 												<div><span>담당자 :</span></div>

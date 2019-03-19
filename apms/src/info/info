@@ -2,6 +2,6 @@
 ## resource/properties/info
 
 driver=oracle.jdbc.driver.OracleDriver
-db_ip=jdbc:oracle:thin:@172.30.1.37:1521:orcl
+db_ip=jdbc:oracle:thin:@172.30.1.24:1521:orcl
 name=pms
 pass=1234

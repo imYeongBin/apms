@@ -92,3 +92,44 @@ body .portlet{
     margin: 0 1em 1em 0;
     height: 50px;
   }
+  
+  .bgd-blue{
+  background-color:dodgerblue;
+  }
+  
+  .bgd-gold{
+  background-color:gold;
+  }
+  .bgd-tomato{
+  background-color:tomato;
+  } 
+  .bgd-white{
+  background-color:white;
+  }
+  .bgd-gray{
+  background-color:#eeeeee;
+  }
+  .width20{
+  width:20%;
+  }
+  .width30{
+  width:30%;
+  }
+    .width50{
+  width:50%;
+  }
+    .width100{
+  width:100%;
+  }
+  .height30{
+  height:30px;
+  }
+    .height50{
+  height:50px;
+ 
+  }
+  .text-center{
+  text-align:center;
+  }
+
+  
